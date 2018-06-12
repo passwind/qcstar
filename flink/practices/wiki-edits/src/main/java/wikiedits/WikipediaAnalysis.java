@@ -14,8 +14,6 @@ public class WikipediaAnalysis {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment see = StreamExecutionEnvironment.getExecutionEnvironment();
         DataStream<WikipediaEditEvent> edits = see.addSource(new WikipediaEditsSource());
-        // chat.freenode.net
-        // DataStream<WikipediaEditEvent> edits = see.addSource(new WikipediaEditsSource("chat.freenode.net", 6667, "#oschina"));
 
         KeyedStream<WikipediaEditEvent, String> keyedEdits = edits
             .keyBy(new KeySelector<WikipediaEditEvent,String>() {
