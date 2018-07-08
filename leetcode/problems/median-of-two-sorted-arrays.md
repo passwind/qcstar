@@ -1,8 +1,8 @@
 # [两个排序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/description/)
 
-*** 执行用时：40 ms ***
+*** 执行用时：32 ms ***
 
-![提交结果](./median-of-two-sorted-arrays-40.png)
+![提交结果](./median-of-two-sorted-arrays-32.png)
 
 *** 执行用时为 24 ms 的范例 ***
 

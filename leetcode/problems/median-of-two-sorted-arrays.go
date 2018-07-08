@@ -1,10 +1,8 @@
 package problems
 
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
-	i, j, l1, l2, x, y, c, mid := 0, 0, len(nums1), len(nums2), 0, 0, 1.0, (len(nums1)+len(nums2))/2
-	if (l1+l2)%2 == 0 {
-		c = 2.0
-	}
+	i, j, l1, l2, x, y := 0, 0, len(nums1), len(nums2), 0, 0
+	mid := (l1 + l2) / 2
 
 	for {
 		if i+j > mid {
@@ -29,8 +27,8 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	}
 
 	if (l1+l2)%2 != 0 {
-		y = 0
+		return float64(x)
 	}
 
-	return ((float64)(x + y)) / c
+	return (float64(x + y)) / 2.0
 }
