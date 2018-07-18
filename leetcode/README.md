@@ -1,6 +1,6 @@
 # Practices from [leetcode-cn](https://leetcode-cn.com/)
 
-*** [scores](./scores.xlsx) ***
+**[scores](./scores.xlsx)**
 
 * 2018-7-18 [8.字符串转整数](./problems/string-to-integer-atoi.md)
 * 2018-7-17 [7.反转整数](./problems/reverse-integer.md)
