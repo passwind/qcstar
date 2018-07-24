@@ -2,6 +2,7 @@
 
 **[scores](./scores.xlsx)**
 
+* 2018-7-24 [9.回文数](./problems/palindrome-number.md)
 * 2018-7-18 [8.字符串转整数](./problems/string-to-integer-atoi.md)
 * 2018-7-17 [7.反转整数](./problems/reverse-integer.md)
 * 2018-7-14 [6.Z字形变换](./problems/zigzag-conversion.md)
