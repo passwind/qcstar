@@ -75,7 +75,7 @@ func Test_isMatch(t *testing.T) {
 
 	res = isMatch("aabbbbbbb", ".*.c.*")
 	if res {
-		t.Errorf("error: should be false, s=\"%s\", p=\"%s\"", "aabbbbbbb", "....*")
+		t.Errorf("error: should be false, s=\"%s\", p=\"%s\"", "aabbbbbbb", ".*.c.*")
 	}
 
 	res = isMatch("aabbbbbbb", "**.c.*")
@@ -120,5 +120,108 @@ func Test_isMatch(t *testing.T) {
 	res = isMatch("aaab", "a*ab*")
 	if !res {
 		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "aaab", "a*ab*")
+	}
+
+	// 5.
+	res = isMatch("abbbcd", "ab*bbbcd")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "aaab", "a*ab*")
+	}
+
+	// 6.
+	res = isMatch("aaa", "ab*a*c*a")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "aaa", "ab*a*c*a")
+	}
+
+	// 7.
+	res = isMatch("bbbba", ".*a*a")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbba", ".*a*a")
+	}
+
+	res = isMatch("bbbba", ".*a*ba")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbba", ".*a*ba")
+	}
+
+	res = isMatch("bbbba", ".*a*bba")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbba", ".*a*bba")
+	}
+
+	res = isMatch("bbbba", ".*a*bb*a")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbba", ".*a*bb*a")
+	}
+
+	res = isMatch("bbbccba", ".*a*a")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbccba", ".*a*a")
+	}
+
+	res = isMatch("bbbccba", ".*a*ccba")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbccba", ".*a*ccb*a")
+	}
+
+	res = isMatch("bbbccba", ".*a*cba")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbccba", ".*a*cba")
+	}
+
+	res = isMatch("bcbaccbc", ".*a*cba.*")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bcbaccbc", ".*a*cba.*")
+	}
+
+	res = isMatch("bcbaccbc", ".*a*cbac*bc")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bcbaccbc", ".*a*cbac*bc")
+	}
+
+	// 8.
+	res = isMatch("ab", ".*..")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "ab", ".*..")
+	}
+
+	// 9.
+	res = isMatch("", ".*")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "", ".*")
+	}
+
+	res = isMatch("", "a*")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "", "a*")
+	}
+
+	res = isMatch("", "a*.*b*")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "", "a*.*b*")
+	}
+
+	// 10.
+	res = isMatch("", ".")
+	if res {
+		t.Errorf("error: should be false, s=\"%s\", p=\"%s\"", "", ".")
+	}
+
+	res = isMatch("", "a")
+	if res {
+		t.Errorf("error: should be false, s=\"%s\", p=\"%s\"", "", "a")
+	}
+
+	//11.
+	res = isMatch("", ".*b")
+	if res {
+		t.Errorf("error: should be false, s=\"%s\", p=\"%s\"", "", ".*b")
+	}
+
+	// 12.
+	res = isMatch("bbbaccbbbaababbac", ".b*b*.*...*.*c*.")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbaccbbbaababbac", ".b*b*.*...*.*c*.")
 	}
 }
