@@ -37,80 +37,68 @@ func isMatch(s string, p string) bool {
 			j = j + 2
 			return true
 		}
-		l := j
-		find := false
-		for k := j + 1; k < totalp; k++ {
-			if k < totalp-1 && reg[k+1] == '*' {
-				l = k - 1
-				break
-			} else if reg[j] == reg[k] {
-				l = k
-			} else {
-				break
-			}
-		}
-		fmt.Printf("l=%d,j=%d\n", l, j)
-		len := l - j + 1
-		if j > 0 {
-			for k := j - 1; k > 0; k-- {
-				fmt.Printf("backstr: k=%d, i=%d, j=%d\n", k, i, j)
-				if reg[k] == '*' && (reg[k-1] == reg[j] || reg[k-1] == '.') {
-					if regstr[k-1] > -1 {
-						len1 := 0
-						if reg[k-1] == '.' && reg[j] != '.' {
-							end := -1
-							for x := regstr[k]; x >= regstr[k-1] && len1 < len; x-- {
-								fmt.Printf("len1=%d, x=%d, end=%d\n", len1, x, end)
-								if str[x] == reg[j] {
-									len1++
-									if end == -1 {
-										end = x
-									}
-								} else {
-									len1 = 0
-									end = -1
-								}
-							}
-							if len > len1 {
-								return false
-							}
-							i = end - len1 + 1
-							if i == regstr[k-1] {
-								regstr[k] = -1
-								regstr[k-1] = -1
-							} else {
-								regstr[k] = i - 1
-							}
-						} else {
-							len1 = regstr[k] - regstr[k-1] + 1
-							if len > len1 {
-								return false
-							}
-							i = regstr[k] - len + 1
-							fmt.Printf("k=%d, i=%d, j=%d\n", k, i, j)
-							if len == len1 {
-								regstr[k] = -1
-								regstr[k-1] = -1
-							} else {
-								regstr[k] = i - 1
-							}
-						}
-						for y := k + 1; y < j; y++ {
-							regstr[y] = -1
-						}
-						for y := 0; y < len; y++ {
-							regstr[j+y] = i + y
-						}
-						j += len
-						i += len
-						find = true
 
-						fmt.Printf("find %d, %d, %v\n", i, j, regstr)
+		find := false
+		cj := j
+		fixed := false
+		for k := j - 1; k >= 0; k-- {
+			fmt.Printf("bc: j=%d, cj=%d, k=%d\n", j, cj, k)
+			if regstr[k] > -1 {
+				if k > 0 && reg[k] == '*' {
+					if reg[k-1] == '.' && reg[j] != '.' {
+						for x := regstr[k]; x >= regstr[k-1]; x-- {
+							fmt.Printf("ccc cj=%d, x=%d\n", cj, x)
+							if str[x] == reg[j] {
+								regstr[cj] = x
+								if regstr[k-1] == regstr[cj] {
+									regstr[k-1] = -1
+									regstr[k] = -1
+								} else {
+									regstr[k] = regstr[cj] - 1
+								}
+								find = true
+								break
+							}
+						}
+						if find {
+							break
+						}
+					} else if reg[j] == '.' || reg[k-1] == reg[j] {
+						regstr[cj] = regstr[k]
+						if regstr[k-1] == regstr[cj] {
+							regstr[k-1] = -1
+							regstr[k] = -1
+						} else {
+							regstr[k] = regstr[cj] - 1
+						}
+						fmt.Printf("right111: cj=%d, k=%d, %v\n", cj, k, regstr)
+						find = true
 						break
 					}
+					k--
+				} else if reg[k] == '.' && reg[j] != '.' {
+					if str[regstr[k]] == reg[j] {
+						fixed = true
+						regstr[cj] = regstr[k]
+						regstr[k] = -1
+						cj = k
+					}
+				} else if reg[k] == reg[j] {
+					fixed = true
+					regstr[cj] = regstr[k]
+					regstr[k] = -1
+					cj = k
+					fmt.Printf("right: cj=%d, k=%d, %v\n", cj, k, regstr)
 				}
 			}
 		}
+
+		if find {
+			i = regstr[j] + 1
+			j++
+			fmt.Printf("i, j = %d, %d\n", i, j)
+		}
+
 		return find
 	}
 

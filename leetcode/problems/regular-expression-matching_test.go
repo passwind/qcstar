@@ -224,4 +224,29 @@ func Test_isMatch(t *testing.T) {
 	if !res {
 		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "bbbaccbbbaababbac", ".b*b*.*...*.*c*.")
 	}
+
+	// 13.
+	res = isMatch("bccbbabcaccacbcacaa", ".*b.*c*.*.*.c*a*.c")
+	if res {
+		t.Errorf("error: should be false, s=\"%s\", p=\"%s\"", "bccbbabcaccacbcacaa", ".*b.*c*.*.*.c*a*.c")
+	}
+
+	// 14.
+	res = isMatch("cabbbbcbcacbabc", ".*b.*.ab*.*b*a*c")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "cabbbbcbcacbabc", ".*b.*.ab*.*b*a*c")
+	}
+
+	// 15.
+	res = isMatch("abbaaaabaabbcba", "a*.*ba.*c*..a*.a*.")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "abbaaaabaabbcba", "a*.*ba.*c*..a*.a*.")
+	}
+}
+
+func Test_isMatchOne(t *testing.T) {
+	res := isMatch("abbaaaabaabbcba", "a*.*ba.*c*..a*.a*.")
+	if !res {
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "abbaaaabaabbcba", "a*.*ba.*c*..a*.a*.")
+	}
 }
