@@ -2,7 +2,7 @@
 
 **[scores](./scores.xlsx)**
 
-* 2018-7-26 [10. 正则表达式匹配](./problems/regular-expression-matching.md)
+* 2018-8-4 [10. 正则表达式匹配](./problems/regular-expression-matching.md) 7-26开始，错误提交约16次
 * 2018-7-24 [9.回文数](./problems/palindrome-number.md)
 * 2018-7-18 [8.字符串转整数](./problems/string-to-integer-atoi.md)
 * 2018-7-17 [7.反转整数](./problems/reverse-integer.md)

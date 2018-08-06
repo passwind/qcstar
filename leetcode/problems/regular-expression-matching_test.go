@@ -245,8 +245,8 @@ func Test_isMatch(t *testing.T) {
 }
 
 func Test_isMatchOne(t *testing.T) {
-	res := isMatch("abbaaaabaabbcba", "a*.*ba.*c*..a*.a*.")
+	res := isMatch("", ".*")
 	if !res {
-		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "abbaaaabaabbcba", "a*.*ba.*c*..a*.a*.")
+		t.Errorf("error: should be true, s=\"%s\", p=\"%s\"", "", ".*")
 	}
 }
