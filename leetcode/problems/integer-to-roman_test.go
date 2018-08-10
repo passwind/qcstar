@@ -27,4 +27,61 @@ func Test_intToRoman(t *testing.T) {
 	if res != "MCMXCIV" {
 		t.Errorf("error: should be MCMXCIV, in fact [%s]", res)
 	}
+
+	res = intToRoman(1)
+	if res != "I" {
+		t.Errorf("error: should be I, in fact [%s]", res)
+	}
+
+	res = intToRoman(3999)
+	if res != "MMMCMXCIX" {
+		t.Errorf("error: should be MMMCMXCIX, in fact [%s]", res)
+	}
+
+	// 1. 6 - VI, error VIII
+	res = intToRoman(6)
+	if res != "VI" {
+		t.Errorf("error: should be VI, in fact [%s]", res)
+	}
+
+	res = intToRoman(5)
+	if res != "V" {
+		t.Errorf("error: should be V, in fact [%s]", res)
+	}
+
+	res = intToRoman(10)
+	if res != "X" {
+		t.Errorf("error: should be X, in fact [%s]", res)
+	}
+
+	res = intToRoman(50)
+	if res != "L" {
+		t.Errorf("error: should be L, in fact [%s]", res)
+	}
+
+	res = intToRoman(100)
+	if res != "C" {
+		t.Errorf("error: should be C, in fact [%s]", res)
+	}
+
+	res = intToRoman(500)
+	if res != "D" {
+		t.Errorf("error: should be D, in fact [%s]", res)
+	}
+
+	res = intToRoman(1000)
+	if res != "M" {
+		t.Errorf("error: should be M, in fact [%s]", res)
+	}
+
+	res = intToRoman(1550)
+	if res != "MDL" {
+		t.Errorf("error: should be MDL, in fact [%s]", res)
+	}
+
+	res = intToRoman(2050)
+	if res != "MML" {
+		t.Errorf("error: should be MML, in fact [%s]", res)
+	}
+
 }

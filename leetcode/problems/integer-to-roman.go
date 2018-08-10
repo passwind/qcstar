@@ -37,9 +37,9 @@ func intToRoman(num int) string {
 			for k := 0; k < d; k++ {
 				rr = append(rr, rc[i][1])
 			}
-		} else {
+		} else { // d>=6 && d<9
 			rr = append(rr, rc[i][5])
-			for k := 6; k < 9; k++ {
+			for k := 6; k <= d; k++ {
 				rr = append(rr, rc[i][1])
 			}
 		}
