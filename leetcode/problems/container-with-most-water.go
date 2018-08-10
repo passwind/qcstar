@@ -2,6 +2,30 @@ package problems
 
 func maxArea(height []int) int {
 	total := len(height)
+	i, j, max := 0, total-1, 0
+	for i < j {
+		// fmt.Printf("i=%d, j=%d\n", i, j)
+		h := height[i]
+		if h > height[j] {
+			h = height[j]
+		}
+		w := (j - i) * h
+		if w > max {
+			max = w
+		}
+		// fmt.Printf("max=%d\n", max)
+		if height[i] < height[j] {
+			i++
+		} else {
+			j--
+		}
+	}
+
+	return max
+}
+
+func maxArea3(height []int) int {
+	total := len(height)
 	var max, maxH int
 	for i := total - 1; i >= 1; i-- {
 		for j := 0; j+i < total; j++ {
