@@ -4,10 +4,10 @@
 
 ![提交记录](./container-with-most-water-1.png)
 
-## 第二次提交：成绩更差 1104ms
+## 第二次提交：成绩 1104ms
 
 ![提交记录](./container-with-most-water-2.png)
 
-## 第三次提交：成绩更差 240ms
+## 第三次提交：成绩 240ms
 
 ![提交记录](./container-with-most-water-3.png)
