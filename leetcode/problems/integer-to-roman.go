@@ -1,5 +1,7 @@
 package problems
 
+import "bytes"
+
 func intToRoman(num int) string {
 	t, i, j := num, 0, 127
 	rc := map[int]map[int]byte{
@@ -51,5 +53,6 @@ func intToRoman(num int) string {
 		t = t / 10
 		i++
 	}
-	return string(res[j+1:])
+	b := bytes.NewBuffer(res[j+1:])
+	return b.String()
 }
