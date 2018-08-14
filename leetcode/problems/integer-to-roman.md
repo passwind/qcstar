@@ -112,3 +112,9 @@ func intToRoman(num int) string {
 	return res
 }
 ```
+
+## 第四次提交 28ms 83.33%
+
+**参照范例直接采用bytes，效果不明显**
+
+![提交记录](./integer-to-roman-4.png)

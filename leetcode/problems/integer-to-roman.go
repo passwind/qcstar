@@ -1,8 +1,57 @@
 package problems
 
-import "bytes"
+import (
+	"bytes"
+)
 
 func intToRoman(num int) string {
+	t, i, j := num, 3, 1000
+	b := bytes.NewBuffer(nil)
+	rc := map[int]map[int]byte{
+		0: map[int]byte{
+			1: 'I',
+			5: 'V',
+		},
+		1: map[int]byte{
+			1: 'X',
+			5: 'L',
+		},
+		2: map[int]byte{
+			1: 'C',
+			5: 'D',
+		},
+		3: map[int]byte{
+			1: 'M',
+		},
+	}
+	for t > 0 {
+		d := t / j
+		t = t - d*j
+		j = j / 10
+		if d == 9 {
+			b.WriteByte(rc[i][1])
+			b.WriteByte(rc[i+1][1])
+		} else if d == 4 {
+			b.WriteByte(rc[i][1])
+			b.WriteByte(rc[i][5])
+		} else if d == 5 {
+			b.WriteByte(rc[i][5])
+		} else if d >= 1 && d <= 3 {
+			for k := 0; k < d; k++ {
+				b.WriteByte(rc[i][1])
+			}
+		} else if d >= 6 && d <= 8 {
+			b.WriteByte(rc[i][5])
+			for k := 6; k <= d; k++ {
+				b.WriteByte(rc[i][1])
+			}
+		}
+		i--
+	}
+	return b.String()
+}
+
+func intToRoman1(num int) string {
 	t, i, j := num, 0, 127
 	rc := map[int]map[int]byte{
 		0: map[int]byte{
