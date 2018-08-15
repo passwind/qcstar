@@ -4,26 +4,28 @@ import (
 	"bytes"
 )
 
+var rc = map[int]map[int]byte{
+	0: map[int]byte{
+		1: 'I',
+		5: 'V',
+	},
+	1: map[int]byte{
+		1: 'X',
+		5: 'L',
+	},
+	2: map[int]byte{
+		1: 'C',
+		5: 'D',
+	},
+	3: map[int]byte{
+		1: 'M',
+	},
+}
+
 func intToRoman(num int) string {
 	t, i, j := num, 3, 1000
 	b := bytes.NewBuffer(nil)
-	rc := map[int]map[int]byte{
-		0: map[int]byte{
-			1: 'I',
-			5: 'V',
-		},
-		1: map[int]byte{
-			1: 'X',
-			5: 'L',
-		},
-		2: map[int]byte{
-			1: 'C',
-			5: 'D',
-		},
-		3: map[int]byte{
-			1: 'M',
-		},
-	}
+
 	for t > 0 {
 		d := t / j
 		t = t - d*j

@@ -118,3 +118,9 @@ func intToRoman(num int) string {
 **参照范例直接采用bytes，效果不明显**
 
 ![提交记录](./integer-to-roman-4.png)
+
+## 第五次提交 24ms 100%
+
+**将常量置于函数体外部，不用反复创建，则提高了重复执行效率**
+
+![提交记录](./integer-to-roman-5.png)
