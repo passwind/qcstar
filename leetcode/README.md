@@ -2,6 +2,7 @@
 
 **[scores](./scores.xlsx)**
 
+* 2018-8-16 [13. 罗马数字转整数](./problems/roman-to-integer.md)
 * 2018-8-10 [12. 整数转罗马数字](./problems/integer-to-roman.md)
 * 2018-8-7 [11. 盛最多水的容器](./problems/container-with-most-water.md)
 * 2018-8-4 [10. 正则表达式匹配](./problems/regular-expression-matching.md) 7-26开始，错误提交约16次
