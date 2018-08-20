@@ -62,7 +62,7 @@ func threeSum(nums []int) [][]int {
 	quickSort(&nums, 0, len(nums)-1)
 	// fmt.Printf("%+v\n", nums)
 
-	fi, zi, zeroidx0, zeroidx1 := -1, total, -1, -1
+	fb, fi, zi, ze, zeroidx0, zeroidx1 := -1, -1, total, total, -1, -1
 	for k := total; k > 0; k-- {
 		if nums[k-1] <= 0 {
 			zi = k
@@ -85,7 +85,7 @@ func threeSum(nums []int) [][]int {
 	rm := make(map[threeSumKey]bool)
 	tm := make(map[int]int)
 
-	// fmt.Printf("%v - %d,%d,%d,%d - %d : %d\n", nums, fi, zeroidx0, zeroidx1, zi, total-1-zi, fi)
+	// fmt.Printf("%v - fb=%d, fi=%d, zeroidx0=%d, zeroidx1=%d, zi=%d, ze=%d - %d : %d\n", nums, fb, fi, zeroidx0, zeroidx1, zi, ze, total-1-zi, fi)
 
 	if total-1 >= zi && fi >= 0 {
 		for i := 0; i < total; i++ {
@@ -95,7 +95,11 @@ func threeSum(nums []int) [][]int {
 			if i <= fi {
 				target := -nums[i]
 				// fmt.Printf("fff: %v, i=%d, target=%d\n", nums[zi:], i, target)
-				matched := twoSum1(nums[zi:], target)
+				ze = total
+				for nums[ze-1] >= target && ze > 0 {
+					ze--
+				}
+				matched := twoSum1(nums[zi:ze], target)
 				if len(matched) > 0 {
 					for _, zis := range matched {
 						key := threeSumKey{
@@ -116,16 +120,21 @@ func threeSum(nums []int) [][]int {
 			} else if i >= zi {
 				target := -nums[i]
 				// fmt.Printf("zzz: %v, i=%d, target=%d\n", nums[0:fi+1], i, target)
-				matched := twoSum1(nums[0:fi+1], target)
+				fb = 0
+				for nums[fb] <= target && fb < total-1 {
+					fb++
+				}
+				// fmt.Printf("fb=%d, fi=%d\n", fb, fi)
+				matched := twoSum1(nums[fb:fi+1], target)
 				if len(matched) > 0 {
 					for _, zis := range matched {
 						key := threeSumKey{
-							j: nums[zis[0]],
-							i: nums[zis[1]],
+							j: nums[fb+zis[0]],
+							i: nums[fb+zis[1]],
 							k: nums[i],
 						}
 						if _, ok := rm[key]; !ok {
-							res = append(res, []int{nums[zis[0]], nums[zis[1]], nums[i]})
+							res = append(res, []int{nums[fb+zis[0]], nums[fb+zis[1]], nums[i]})
 							rm[key] = true
 						}
 					}
