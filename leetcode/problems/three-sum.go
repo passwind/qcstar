@@ -37,6 +37,20 @@ type threeSumKey struct {
 	k int
 }
 
+func twoSum1(nums []int, target int) []int {
+	result := make([]int, 2)
+	m := make(map[int]int)
+	for i := 0; i < len(nums); i++ {
+		if _, ok := m[target-nums[i]]; ok {
+			result[1] = i
+			result[0] = m[target-nums[i]]
+			break
+		}
+		m[nums[i]] = i
+	}
+	return result
+}
+
 func threeSum(nums []int) [][]int {
 	res := [][]int{}
 	total := len(nums)
@@ -68,43 +82,62 @@ func threeSum(nums []int) [][]int {
 	}
 
 	rm := make(map[threeSumKey]bool)
+	tm := make(map[int]int)
 
 	// fmt.Printf("%v - %d,%d,%d,%d - %d : %d\n", nums, fi, zeroidx0, zeroidx1, zi, total-1-zi, fi)
 
 	if total-1 >= zi && fi >= 0 {
-		for i := 1; i < total; i++ {
+		for i := 0; i < total; i++ {
 			if i == zeroidx0 {
 				i = zi
 			}
-			for j := 0; j < i && j <= fi; j++ {
-				if nums[j]+nums[i] < 0 {
-					for k := len(nums) - 1; k >= i+1 && k >= zi; k-- {
-						if nums[j]+nums[i]+nums[k] == 0 {
-							key := threeSumKey{
-								j: nums[j],
-								i: nums[i],
-								k: nums[k],
-							}
-							if _, ok := rm[key]; !ok {
-								res = append(res, []int{nums[j], nums[i], nums[k]})
-								rm[key] = true
-							}
-						} else if nums[j]+nums[i]+nums[k] < 0 {
-							break
-						}
-					}
-				} else if zeroidx1 > 0 && nums[j]+nums[i] == 0 {
+			if i <= fi {
+				target := -nums[i]
+				// fmt.Printf("fff: %v, i=%d, target=%d\n", nums[zi:], i, target)
+				zis := twoSum1(nums[zi:], target)
+				if zis[1] != zis[0] {
 					key := threeSumKey{
-						j: nums[j],
-						i: 0,
+						j: nums[i],
+						i: nums[zi+zis[0]],
+						k: nums[zi+zis[1]],
+					}
+					if _, ok := rm[key]; !ok {
+						res = append(res, []int{nums[i], nums[zi+zis[0]], nums[zi+zis[1]]})
+						rm[key] = true
+					}
+				}
+				if zeroidx1 > 0 {
+					tm[-nums[i]] = i
+				}
+				// fmt.Printf("zis:=%d , res: %v\n", zis, res)
+			} else if i >= zi {
+				target := -nums[i]
+				// fmt.Printf("zzz: %v, i=%d, target=%d\n", nums[0:fi+1], i, target)
+				zis := twoSum1(nums[0:fi+1], target)
+				if zis[1] != zis[0] {
+					key := threeSumKey{
+						j: nums[zis[0]],
+						i: nums[zis[1]],
 						k: nums[i],
 					}
 					if _, ok := rm[key]; !ok {
-						res = append(res, []int{nums[j], 0, nums[i]})
+						res = append(res, []int{nums[zis[0]], nums[zis[1]], nums[i]})
 						rm[key] = true
 					}
-				} else {
-					break
+					// fmt.Printf("res: %v\n", res)
+				}
+				if zeroidx1 > 0 {
+					if _, ok := tm[nums[i]]; ok {
+						key := threeSumKey{
+							j: nums[tm[nums[i]]],
+							i: 0,
+							k: nums[i],
+						}
+						if _, ok := rm[key]; !ok {
+							res = append(res, []int{nums[tm[nums[i]]], 0, nums[i]})
+							rm[key] = true
+						}
+					}
 				}
 			}
 		}

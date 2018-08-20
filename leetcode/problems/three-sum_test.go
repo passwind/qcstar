@@ -29,30 +29,21 @@ func Test_quickSort(t *testing.T) {
 }
 func Test_threeSum(t *testing.T) {
 	// res := threeSum([]int{-1, 0, 1, 2, -1, -4})
-	// // if !checkThreeSum(res, [][]int{
-	// // 	[]int{-1, 0, 1},
-	// // 	[]int{-1, -1, 2},
-	// // }) {
-	// // 	t.Errorf("error for %v, should be %v, in fact %v", []int{-1, 0, 1, 2, -1, -4}, [][]int{
-	// // 		[]int{-1, 0, 1},
-	// // 		[]int{-1, -1, 2},
-	// // 	}, res)
-	// // }
 	// t.Logf("res : %+v", res)
 
 	// // 1. [0, 0, 0] error [] true [[0, 0, 0]]
 	// res = threeSum([]int{0, 0, 0})
 	// t.Logf("res : %+v", res)
 
-	// 2.[-1,0,1] error [] true [[-1,0,1]]
-	// res := threeSum([]int{-1, 0, 1})
+	// // 2.[-1,0,1] error [] true [[-1,0,1]]
+	// res = threeSum([]int{-1, 0, 1})
 	// t.Logf("res : %+v", res)
 
-	res := threeSum(longints)
-	t.Logf("res : %+v - [%d - %d]", res, len(longints), len(res))
+	// res := threeSum(longints)
+	// t.Logf("res : %+v - [%d - %d]", res, len(longints), len(res))
 
-	// res := threeSum(longzero)
-	// t.Logf("res : %+v - [%d - %d]", res, len(longzero), len(res))
+	res := threeSum(longzero)
+	t.Logf("res : %+v - [%d - %d]", res, len(longzero), len(res))
 
 	// 4. [-2,0,1,1,2]
 	// 输出：
@@ -61,4 +52,11 @@ func Test_threeSum(t *testing.T) {
 	// [[-2,0,2],[-2,1,1]]
 	// res := threeSum([]int{-2, 0, 1, 1, 2})
 	// t.Logf("res :should be [[-2,0,2],[-2,1,1]] --  %+v", res)
+
+	// 5. 输入：
+	// [-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]
+	// 输出：
+	// [[-4,2,2],[-2,0,2],[-2,-2,4],[-4,0,4],[-4,-2,6]]
+	// 预期：
+	// [[-4,-2,6],[-4,0,4],[-4,1,3],[-4,2,2],[-2,-2,4],[-2,0,2]]
 }
