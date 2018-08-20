@@ -48,8 +48,8 @@ func Test_threeSum(t *testing.T) {
 	// res := threeSum([]int{-1, 0, 1})
 	// t.Logf("res : %+v", res)
 
-	// res := threeSum(longints)
-	// t.Logf("res : %+v - [%d - %d]", res, len(longints), len(res))
+	res := threeSum(longints)
+	t.Logf("res : %+v - [%d - %d]", res, len(longints), len(res))
 
 	// res := threeSum(longzero)
 	// t.Logf("res : %+v - [%d - %d]", res, len(longzero), len(res))
@@ -59,6 +59,6 @@ func Test_threeSum(t *testing.T) {
 	// [[-2,1,1]]
 	// 预期：
 	// [[-2,0,2],[-2,1,1]]
-	res := threeSum([]int{-2, 0, 1, 1, 2})
-	t.Logf("res :should be [[-2,0,2],[-2,1,1]] --  %+v", res)
+	// res := threeSum([]int{-2, 0, 1, 1, 2})
+	// t.Logf("res :should be [[-2,0,2],[-2,1,1]] --  %+v", res)
 }

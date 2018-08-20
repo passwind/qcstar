@@ -1,7 +1,5 @@
 package problems
 
-import "fmt"
-
 func quickSort(in *[]int, begin, end int) {
 	var partition = func(b, e int) int {
 		i, j, pivot := b, e, b
@@ -71,10 +69,10 @@ func threeSum(nums []int) [][]int {
 
 	rm := make(map[threeSumKey]bool)
 
-	fmt.Printf("%v - %d,%d,%d,%d - %d : %d\n", nums, fi, zeroidx0, zeroidx1, zi, total-1-zi, fi)
+	// fmt.Printf("%v - %d,%d,%d,%d - %d : %d\n", nums, fi, zeroidx0, zeroidx1, zi, total-1-zi, fi)
 
 	if total-1 >= zi && fi >= 0 {
-		for i := 1; i < total-1; i++ {
+		for i := 1; i < total; i++ {
 			if i == zeroidx0 {
 				i = zi
 			}
