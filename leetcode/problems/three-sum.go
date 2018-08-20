@@ -37,14 +37,15 @@ type threeSumKey struct {
 	k int
 }
 
-func twoSum1(nums []int, target int) []int {
-	result := make([]int, 2)
+func twoSum1(nums []int, target int) [][]int {
+	result := [][]int{}
 	m := make(map[int]int)
 	for i := 0; i < len(nums); i++ {
 		if _, ok := m[target-nums[i]]; ok {
-			result[1] = i
-			result[0] = m[target-nums[i]]
-			break
+			res := make([]int, 2)
+			res[1] = i
+			res[0] = m[target-nums[i]]
+			result = append(result, res)
 		}
 		m[nums[i]] = i
 	}
@@ -94,16 +95,18 @@ func threeSum(nums []int) [][]int {
 			if i <= fi {
 				target := -nums[i]
 				// fmt.Printf("fff: %v, i=%d, target=%d\n", nums[zi:], i, target)
-				zis := twoSum1(nums[zi:], target)
-				if zis[1] != zis[0] {
-					key := threeSumKey{
-						j: nums[i],
-						i: nums[zi+zis[0]],
-						k: nums[zi+zis[1]],
-					}
-					if _, ok := rm[key]; !ok {
-						res = append(res, []int{nums[i], nums[zi+zis[0]], nums[zi+zis[1]]})
-						rm[key] = true
+				matched := twoSum1(nums[zi:], target)
+				if len(matched) > 0 {
+					for _, zis := range matched {
+						key := threeSumKey{
+							j: nums[i],
+							i: nums[zi+zis[0]],
+							k: nums[zi+zis[1]],
+						}
+						if _, ok := rm[key]; !ok {
+							res = append(res, []int{nums[i], nums[zi+zis[0]], nums[zi+zis[1]]})
+							rm[key] = true
+						}
 					}
 				}
 				if zeroidx1 > 0 {
@@ -113,16 +116,18 @@ func threeSum(nums []int) [][]int {
 			} else if i >= zi {
 				target := -nums[i]
 				// fmt.Printf("zzz: %v, i=%d, target=%d\n", nums[0:fi+1], i, target)
-				zis := twoSum1(nums[0:fi+1], target)
-				if zis[1] != zis[0] {
-					key := threeSumKey{
-						j: nums[zis[0]],
-						i: nums[zis[1]],
-						k: nums[i],
-					}
-					if _, ok := rm[key]; !ok {
-						res = append(res, []int{nums[zis[0]], nums[zis[1]], nums[i]})
-						rm[key] = true
+				matched := twoSum1(nums[0:fi+1], target)
+				if len(matched) > 0 {
+					for _, zis := range matched {
+						key := threeSumKey{
+							j: nums[zis[0]],
+							i: nums[zis[1]],
+							k: nums[i],
+						}
+						if _, ok := rm[key]; !ok {
+							res = append(res, []int{nums[zis[0]], nums[zis[1]], nums[i]})
+							rm[key] = true
+						}
 					}
 					// fmt.Printf("res: %v\n", res)
 				}
