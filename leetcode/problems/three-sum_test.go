@@ -28,19 +28,19 @@ func Test_quickSort(t *testing.T) {
 	t.Logf("sort: %+v", res)
 }
 func Test_threeSum(t *testing.T) {
-	// res := threeSum([]int{-1, 0, 1, 2, -1, -4})
-	// t.Logf("res : %+v", res)
+	res := threeSum([]int{-1, 0, 1, 2, -1, -4})
+	t.Logf("res : %+v", res)
 
-	// // 1. [0, 0, 0] error [] true [[0, 0, 0]]
-	// res = threeSum([]int{0, 0, 0})
-	// t.Logf("res : %+v", res)
+	// 1. [0, 0, 0] error [] true [[0, 0, 0]]
+	res = threeSum([]int{0, 0, 0})
+	t.Logf("res : %+v", res)
 
-	// // 2.[-1,0,1] error [] true [[-1,0,1]]
-	// res = threeSum([]int{-1, 0, 1})
-	// t.Logf("res : %+v", res)
+	// 2.[-1,0,1] error [] true [[-1,0,1]]
+	res = threeSum([]int{-1, 0, 1})
+	t.Logf("res : %+v", res)
 
-	res := threeSum(longints)
-	t.Logf("res : %+v - [%d - %d]", res, len(longints), len(res))
+	// res := threeSum(longints)
+	// t.Logf("res : %+v - [%d - %d]", res, len(longints), len(res))
 
 	// res := threeSum(longzero)
 	// t.Logf("res : %+v - [%d - %d]", res, len(longzero), len(res))

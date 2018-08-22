@@ -8,31 +8,34 @@ type threeSumKey struct {
 
 func threeSum(nums []int) [][]int {
 	res := [][]int{}
-	if len(nums) < 3 {
+	total := len(nums)
+	if total < 3 {
 		return res
 	}
 
-	zint, fint, intmap := []int{}, []int{}, map[int]int{}
+	intmap := map[int]int{}
 	rm := make(map[threeSumKey]bool)
 	zeronums := 0
 	for idx, n := range nums {
-		if n > 0 {
-			zint = append(zint, idx)
-			intmap[n] = idx
-		} else if n < 0 {
-			fint = append(fint, idx)
-			intmap[n] = idx
-		} else {
+		if n == 0 {
 			zeronums++
+		} else {
+			intmap[n] = idx
 		}
 	}
 
 	// fmt.Printf("%v - z: %v, f: %v, %d\n", nums, zint, fint, zeronums)
 
-	for i := 0; i < len(fint); i++ {
-		fn := nums[fint[i]]
-		for j := 0; j < len(zint); j++ {
-			zn := nums[zint[j]]
+	for i := 0; i < total; i++ {
+		if nums[i] >= 0 {
+			continue
+		}
+		fn := nums[i]
+		for j := 0; j < total; j++ {
+			if nums[j] <= 0 {
+				continue
+			}
+			zn := nums[j]
 			var n1, n2, n3 int
 			find := false
 			d := -(fn + zn)
@@ -41,7 +44,7 @@ func threeSum(nums []int) [][]int {
 				n2 = 0
 				n3 = zn
 				find = true
-			} else if idx, ok := intmap[d]; ok && idx != fint[i] && idx != zint[j] {
+			} else if idx, ok := intmap[d]; ok && idx != i && idx != j {
 				if d < fn {
 					n1 = d
 					n2 = fn
