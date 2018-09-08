@@ -1,6 +1,8 @@
 package problems
 
-import "bytes"
+import (
+	"bytes"
+)
 
 var codeMap = map[byte][]byte{
 	'2': []byte{
@@ -51,21 +53,21 @@ func letterCombinations(digits string) []string {
 	str := []byte(digits)
 	arr := []*bytes.Buffer{}
 	for i, b := range str {
-		arr1 := []*bytes.Buffer{}
-		for _, c := range codeMap[b] {
-			if i == 0 {
+		if i == 0 {
+			for _, c := range codeMap[b] {
 				a := bytes.NewBuffer(nil)
 				a.WriteByte(c)
 				arr = append(arr, a)
-			} else {
-				for _, aa := range arr {
+			}
+		} else {
+			arr1 := []*bytes.Buffer{}
+			for _, aa := range arr {
+				for _, c := range codeMap[b] {
 					aaa := bytes.NewBuffer([]byte(aa.String()))
 					aaa.WriteByte(c)
 					arr1 = append(arr1, aaa)
 				}
 			}
-		}
-		if i > 0 {
 			arr = arr1
 		}
 	}

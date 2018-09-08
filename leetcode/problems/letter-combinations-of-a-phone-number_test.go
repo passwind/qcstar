@@ -30,5 +30,5 @@ func Test_letterCombinations(t *testing.T) {
 	if !equalStrArray(res, []string{"ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"}) {
 		t.Errorf("error: should be %v, in fact is - %v", []string{"ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"}, res)
 	}
-	t.Logf("%v", res)
+	// t.Logf("%v", res)
 }
