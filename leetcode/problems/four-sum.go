@@ -14,6 +14,12 @@ func fourSum(nums []int, target int) [][]int {
 	// fmt.Printf("in %v\n", nums)
 	m := nums[0] - 1
 	for i := 0; i < l-3; i++ {
+		if nums[i]+nums[i+1]+nums[i+2]+nums[i+3] > target {
+			break
+		}
+		if nums[i]+nums[l-3]+nums[l-2]+nums[l-1] < target {
+			continue
+		}
 		if m == nums[i] {
 			continue
 		}
@@ -21,6 +27,12 @@ func fourSum(nums []int, target int) [][]int {
 		t := target - nums[i]
 		n := nums[i+1] - 1
 		for j := i + 1; j < l-2; j++ {
+			if nums[i]+nums[j]+nums[j+1]+nums[j+2] > target {
+				break
+			}
+			if nums[i]+nums[j]+nums[l-2]+nums[l-1] < target {
+				continue
+			}
 			if n == nums[j] {
 				continue
 			}
