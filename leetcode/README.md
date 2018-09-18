@@ -2,6 +2,7 @@
 
 **[scores](./scores.xlsx)**
 
+* 2018-9-18 [20. 有效的括号](./problems/valid-parentheses.md)
 * 2018-9-16 [19. 删除链表的倒数第N个节点](./problems/remove-nth-node-from-end-of-list.md)
 * 2018-9-11 [18. 四数之和](./problems/four-sum.md)
 * 2018-9-8 [17. 电话号码的字母组合](./problems/letter-combinations-of-a-phone-number.md)
