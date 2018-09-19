@@ -1,32 +1,5 @@
 package problems
 
-import (
-	"fmt"
-	"strings"
-)
-
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func (l *ListNode) String() string {
-	ll := l
-	ss := []string{}
-	for ll != nil {
-		ss = append(ss, fmt.Sprintf("%d", ll.Val))
-		ll = ll.Next
-	}
-	return strings.Join(ss, " -> ")
-}
-
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	result := &ListNode{}
 	tr := result

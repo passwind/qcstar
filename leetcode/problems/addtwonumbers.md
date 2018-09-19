@@ -9,13 +9,6 @@ https://leetcode-cn.com/problems/add-two-numbers/description/
 ## 执行用时 20ms 的范例
 
 ```golang
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	l := new(ListNode)
 	lTmp := l
