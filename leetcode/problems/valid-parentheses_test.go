@@ -8,6 +8,11 @@ func Test_isValid(t *testing.T) {
 		t.Errorf("error: should be true, in fact [%t]", res)
 	}
 
+	res = isValid("")
+	if !res {
+		t.Errorf("error: should be true, in fact [%t]", res)
+	}
+
 	res = isValid("()[]{}")
 	if !res {
 		t.Errorf("error: should be true, in fact [%t]", res)
