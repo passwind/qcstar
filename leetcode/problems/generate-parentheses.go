@@ -1,6 +1,25 @@
 package problems
 
 func generateParenthesis(n int) []string {
+	res := []string{}
+	var gp func(s string, l, r int)
+	gp = func(s string, l, r int) {
+		if len(s) == 2*n {
+			res = append(res, s)
+			return
+		}
+		if l < n {
+			gp(s+"(", l+1, r)
+		}
+		if r < l {
+			gp(s+")", l, r+1)
+		}
+	}
+	gp("", 0, 0)
+	return res
+}
+
+func generateParenthesis1(n int) []string {
 	if n == 0 {
 		return []string{}
 	}
