@@ -2,6 +2,7 @@
 
 **[scores](./scores.xlsx)**
 
+* 2018-9-22 [22. 括号生成](./problems/generate-parentheses.md)
 * 2018-9-19 [21. 合并两个有序链表](./problems/merge-two-sorted-lists.md)
 * 2018-9-18 [20. 有效的括号](./problems/valid-parentheses.md)
 * 2018-9-16 [19. 删除链表的倒数第N个节点](./problems/remove-nth-node-from-end-of-list.md)
