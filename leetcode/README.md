@@ -2,6 +2,7 @@
 
 **[scores](./scores.xlsx)**
 
+* 2018-10-5 [23. 合并K个排序链表](./problems/merge-k-sorted-lists.md)
 * 2018-9-22 [22. 括号生成](./problems/generate-parentheses.md)
 * 2018-9-19 [21. 合并两个有序链表](./problems/merge-two-sorted-lists.md)
 * 2018-9-18 [20. 有效的括号](./problems/valid-parentheses.md)
