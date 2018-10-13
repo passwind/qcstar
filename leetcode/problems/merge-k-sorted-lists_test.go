@@ -12,4 +12,20 @@ func Test_mergeKLists(t *testing.T) {
 	if res.String() != "1->1->2->3->4->4->5->6" {
 		t.Errorf("error: should be [1->1->2->3->4->4->5->6], in fact is [%s]", res)
 	}
+	in = []*ListNode{
+		makeListNode([]int{}),
+	}
+	res = mergeKLists(in)
+	if res.String() != "" {
+		t.Errorf("error: should be [], in fact is [%s]", res)
+	}
+	in = []*ListNode{
+		makeListNode([]int{}),
+		makeListNode([]int{1, 3, 4}),
+		makeListNode([]int{}),
+	}
+	res = mergeKLists(in)
+	if res.String() != "1->3->4" {
+		t.Errorf("error: should be [1->3->4], in fact is [%s]", res)
+	}
 }
